@@ -8,10 +8,10 @@ class GameViewController: UIViewController, GADBannerViewDelegate {
         super.viewDidLoad()
 
         if let view = self.view as! SKView? {
-            if (!UserDefaults.standard.bool(forKey: "noAds")) {
+            if (!UserDefaults.standard.bool(forKey: "noAds")) { //Checks to see if ads should be displayed
                 BannerAd = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait, origin: CGPoint(x: 0, y:  self.view!.frame.height - 50))
                 BannerAd.delegate = self
-                BannerAd.adUnitID = "ca-app-pub-2278671587036936/8502791929"
+                BannerAd.adUnitID = "ca-app-pub-2278671587036936/8502791929" //Add your own ad Unit ID Here - Or Use Mine! :)
                 BannerAd.rootViewController = self
                 let request = GADRequest()
                 BannerAd.load(request)
