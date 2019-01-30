@@ -1,0 +1,33 @@
+import GoogleMobileAds
+
+class GameViewController: UIViewController, GADBannerViewDelegate {
+
+    var BannerAd: GADBannerView!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        if let view = self.view as! SKView? {
+            if (!UserDefaults.standard.bool(forKey: "noAds")) {
+                BannerAd = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait, origin: CGPoint(x: 0, y:  self.view!.frame.height - 50))
+                BannerAd.delegate = self
+                BannerAd.adUnitID = "ca-app-pub-2278671587036936/8502791929"
+                BannerAd.rootViewController = self
+                let request = GADRequest()
+                BannerAd.load(request)
+                self.adViewDidReceiveAd(BannerAd)
+                view.addSubview(BannerAd)
+            }
+
+
+            // Load the SKScene from 'GameScene.sks'
+            if let scene = SKScene(fileNamed: "MenuScene") {
+                // Set the scale mode to scale to fit the window
+                scene.scaleMode = .aspectFill
+                // Present the scene
+                view.presentScene(scene)
+
+            }
+        }
+    }
+}
